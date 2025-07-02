@@ -1,8 +1,7 @@
 {
-  "name": "playwright",
+  "name": "vapeinitaly_tests_ui",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "setup-env": "node setup-env.js",
     "pretest": "node setup-env.js",
@@ -10,8 +9,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "type": "module",
+  "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.52.0",
     "@types/node": "^24.0.0",

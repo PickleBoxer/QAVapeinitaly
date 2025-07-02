@@ -1,19 +1,12 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
-import { fileURLToPath } from 'url';
+import { config } from 'dotenv';
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-import dotenv from 'dotenv';
-import path from 'path';
-
-// ES modules don't have __dirname, so we need to create it
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+config();
 
 /**
  * @see https://playwright.dev/docs/test-configuration
