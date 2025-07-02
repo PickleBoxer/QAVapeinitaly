@@ -65,6 +65,7 @@ jobs:
         echo "FILENAME=$(date +%Y-%m-%d)-production.json" >> $GITHUB_ENV
     
     - name: Upload results to API
+      id: upload-results
       if: always()  # Upload results even if tests failed
       run: |
         curl -X POST "${API_BASE_URL}/upload" \
@@ -72,6 +73,6 @@ jobs:
           -F "token=${TOKEN}"
     
     - name: Notify API of new report
-      if: always()  # Notify even if tests failed
+      if: steps.upload-results.outcome == 'success'  # Only run if upload succeeded
       run: |
         curl -v "${API_BASE_URL}/playwright?token=${TOKEN}&filename=${FILENAME}&campaign=${CAMPAIGN}&platform=${PLATFORM}"

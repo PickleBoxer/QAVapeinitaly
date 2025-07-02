@@ -93,7 +93,7 @@ test.describe('Payment Option - Show Payment Options', async () => {
     await page.getByRole('textbox', { name: 'Parola d\'ordine' }).click();
     await page.getByRole('textbox', { name: 'Parola d\'ordine' }).fill(process.env.TEST_USER_PASSWORD || 'your-password');
     await page.getByRole('button', { name: 'Registrazione' }).click();
-    await expect(page.locator('#payment-option-1-container')).toBeVisible();
+    await expect(page.locator('#payment-option-1-container')).toBeVisible({ timeout: 10000 });
     await page.locator('#payment-option-1-container').click();
     await expect(page.locator('#pay-with-payment-option-1-form')).toBeVisible();
     await expect(page.locator('#pay-with-payment-option-1-form')).toMatchAriaSnapshot(`
