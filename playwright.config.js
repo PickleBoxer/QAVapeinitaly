@@ -12,7 +12,7 @@ config();
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: './campaigns',
+  testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -22,7 +22,11 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['json', { outputFile: 'results.json' }]],
+  reporter: [
+    ['list', { printSteps: true }],
+    ['json', { outputFile: 'results.json' }],
+    ['html', { outputFolder: 'playwright-report' }]
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */

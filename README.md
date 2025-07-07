@@ -54,10 +54,23 @@ Update the `.env` file with your test credentials.
 npm test
 ```
 
-### Run a specific test:
+### Run specific test categories:
 
 ```bash
-npx playwright test campaigns/01_frontOffice/01_test.spec.js
+# Run only functional tests
+npx playwright test tests/UI/campaigns/functional/
+```
+
+### Run specific test areas:
+
+```bash
+# Run login/logout tests
+npx playwright test tests/UI/campaigns/functional/FO/01_login/
+```
+### Run a specific test file:
+
+```bash
+npx playwright test tests/UI/campaigns/01_test.spec.js
 ```
 
 ### Run tests with UI mode:
@@ -90,12 +103,27 @@ The report will be available at `playwright-report/index.html`.
 
 ## 📁 Project Structure
 
-- **campaigns/** - Contains organized test suites
-  - **01_frontOffice/** - Front office tests (user-facing website tests)
-- **playwright.config.js** - Main configuration file
+
+### Test Categories
+
+#### 🔧 **Functional Tests** (`functional/FO/`)
+Tests that verify specific functionality works as expected.
+
+#### 🔄 **Regression Tests** (`regression/`)
+Tests that ensure existing functionality continues to work after changes.
+
+#### ⚡ **Sanity Tests** (`sanity/`)
+Quick smoke tests to verify basic functionality.
+
+#### 🔗 **Integration Tests** (`01_test_refactored.spec.js`)
+Complex cross-functional tests.
+
+### Configuration Files
+- **playwright.config.js** - Main Playwright configuration
 - **.github/workflows/** - CI/CD workflow configuration
 - **.env** - Local environment variables (not committed to git)
 - **.env.example** - Template for environment variables
+- **TEST_ORGANIZATION.md** - Detailed test organization documentation
 
 ## 🔒 Environment Variables
 
@@ -109,7 +137,6 @@ The following environment variables are required:
 >
 > - `QA_UPLOAD_TOKEN` – Token for uploading test results to the reporting API  
 > - `API_BASE_URL` – Base URL for the API used in tests
-
 
 For local development, these can be set in the `.env` file.
 For CI/CD, these are set as GitHub secrets.
