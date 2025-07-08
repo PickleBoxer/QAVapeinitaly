@@ -79,6 +79,6 @@ jobs:
           -F "token=${TOKEN}"
     
     - name: Notify API of new report
-      if: steps.upload-results.outcome == 'success'  # Only run if upload succeeded
+      if: always()
       run: |
         curl -v "${API_BASE_URL}/playwright?token=${TOKEN}&filename=${FILENAME}&campaign=${CAMPAIGN}&platform=${PLATFORM}"
